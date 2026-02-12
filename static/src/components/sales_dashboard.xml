@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl.OwlSalesDashboard" owl="1">
+        <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="row">
+                    <!-- <div class="col m-0 p-0"> -->
+                        <div class="shadow-sm border m-2 p-2 bg-white">
+                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex gap-3">
+                                <div>
+                                    <select class="form-select">
+                                        <option value="San Franscio">San Franscio(Main)</option>
+                                        <option value="Los Angeles">Los Angeles</option>
+                                        <option value="California">California</option>
+                                        <option value="Texas">Texas</option>
+                                        <option value="Alabama">Alabama</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-select">
+                                        <option value="0">This Month</option>
+                                        <option value="7">Last 7 Days</option>
+                                        <option value="30">Last 30 Days</option>
+                                        <option value="90">Last 90 Days</option>
+                                        <option value="365">Last 365 Days</option>
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="input-group input-group-sm border rounded" style="max-width: 260px;">
+                                            <span class="input-group-text bg-white border-0">
+                                                <i class="fa fa-search text-muted"/>
+                                            </span>
+                                            <input type="text"
+                                                class="form-control border-0 shadow-none"
+                                                placeholder="Search..."
+                                                t-on-keyup="onSearchKeyup"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="input-group-text bg-white border-0">
+                                            <i class="fa fa-bell text-muted"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                </div>
+                
+                <div class="row">
+                    <KpiCard icon="'fa-cube'" color="'primary'" name="'Stock On Hand'" value="10" description="'Units across all locations'" percentage="12" trend="'up'"/>
+                    <KpiCard icon="'fa-history'" color="'success'" name="'Forecasted Stock'" value="20" description="'Includes pending receipts'" percentage="-5" trend="'down'"/>
+                    <KpiCard icon="'fa-arrow-down'" color="'warning'" name="'Incoming'" value="'30.50K'" description="'Units to receive'" percentage="8" trend="'up'"/>
+                    <KpiCard icon="'fa-arrow-up'" color="'danger'" name="'Outgoing'" value="'2.5K'" description="'Units to deliver'" percentage="-3" trend="'down'"/>
+                    <KpiCard icon="'fa-usd'" color="'info'" name="'Stock Value'" value="'2.5K'" description="'Current valuation'" percentage="5" trend="'up'"/>
+                    <KpiCard icon="'fa-exclamation-triangle'" color="'primary'" name="'Low Stock Alerts'" value="'2.5K'" description="'Products below min'" percentage="-10" trend="'down'"/>
+                </div>
+                <h3 class="text-primary fw-bold">Operation Overview</h3>
+                <div class="row">
+                    <OverviewCard name="'Receipts'" value="10" description="'To Process'" priority="'High'" action_text="'Receive'"/>
+                    <OverviewCard name="'Delivery Orders'" value="20" description="'To Process'" priority="'High'" action_text="'Deliver'"/>
+                    <OverviewCard name="'Internal Transfers'" value="'30.50K'" description="'Pending'" priority="'High'" action_text="'Transfers'"/>
+                    <OverviewCard name="'Backorders'" value="'2.5K'" description="'Waiting'" priority="'Normal'" action_text="'Review'"/>
+                </div>
+                <div class="col-lg-8">
+                            <div class="shadow-sm border m-2 p-4 bg-white" style="height: 400px;">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Stock Movement Trends</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer type="'line'"/>
+                            </div>     
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white" style="height: 400px;">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <BarRenderer type="'bar'"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-0 p-0">
+                            <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Partner Orders</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <ChartRenderer type="'line'" title="'Partner Orders Report'"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
