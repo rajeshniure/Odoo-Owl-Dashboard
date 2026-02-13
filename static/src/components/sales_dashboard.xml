@@ -66,6 +66,8 @@
                     <OverviewCard name="'Backorders'" value="'2.5K'" description="'Waiting'" priority="'Normal'" action_text="'Review'"/>
                 </div>
                 <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col m-0 p-0">
                             <div class="shadow-sm border m-2 p-4 bg-white" style="height: 400px;">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <h3 class="text-primary fw-bold">Stock Movement Trends</h3>
@@ -74,7 +76,26 @@
                                     </div>
                                 </div>
                                 <ChartRenderer type="'line'"/>
-                            </div>     
+                            </div> 
+                        </div>
+                    </div>  
+                        <div class="row">
+                     <div class="col m-0 p-0">
+                          <div class="shadow-sm border m-2 p-4 bg-white">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="text-primary fw-bold">Critical Replenishment Table</h3>
+                                    <div class="px-3 py-1 bg-primary cursor-pointer">
+                                        <span class="fa fa-arrow-right text-white"/>
+                                    </div>
+                                </div>
+                                <div class="row m-2">
+                                    <div class="col-12">
+                                        <ReplenishmentTable />
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>  
                 </div>
                 <div class="col-lg-4">
                     <div class="row">
@@ -92,14 +113,18 @@
                     </div>
                     <div class="row">
                         <div class="col m-0 p-0">
-                            <div class="shadow-sm border m-2 p-4 bg-white">
-                                <div class="d-flex align-items-center justify-content-between">
+                            <div class="shadow-sm border m-2 p-4 bg-white mb-5">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h3 class="text-primary fw-bold">Partner Orders</h3>
                                     <div class="px-3 py-1 bg-primary cursor-pointer">
                                         <span class="fa fa-arrow-right text-white"/>
                                     </div>
                                 </div>
-                                <ChartRenderer type="'line'" title="'Partner Orders Report'"/>
+                                    <WarehouseProgressBar label="'Zone A (High Turnover)'" items="1240" percentage="85" color="'bg-success'"/>
+                                    <WarehouseProgressBar label="'Zone B (Bulk Storage)'" items="560" percentage="40" color="'bg-warning'"/>
+                                    <WarehouseProgressBar label="'Zone C (Electronics)'" items="890" percentage="92" color="'bg-danger'"/>
+                                    <WarehouseProgressBar label="'Cold Storage'" items="320" percentage="60" color="'bg-success'"/>
+                                    <WarehouseProgressBar label="'Returns Processing'" items="45" percentage="15" color="'bg-warning'"/>
                             </div>
                         </div>
                     </div>

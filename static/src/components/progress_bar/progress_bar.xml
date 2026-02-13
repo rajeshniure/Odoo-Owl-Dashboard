@@ -1,0 +1,22 @@
+<templates xml:space="preserve">
+    <t t-name="owl.WarehouseProgressBar" owl="1">
+        <div class="warehouse-progress-container mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-bold text-primary" t-esc="props.label"/>
+                <span class="text-muted small">
+                    <t t-esc="props.items"/> items
+                </span>
+            </div>
+            <div class="progress" style="height: 8px; background-color: #f0f2f5;">
+                <div class="progress-bar rounded-pill" 
+                     role="progressbar" 
+                     t-att-class="barColorClass"
+                     t-attf-style="width: {{props.percentage}}%; transition: width 0.6s ease;" 
+                     t-att-aria-valuenow="props.percentage" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
