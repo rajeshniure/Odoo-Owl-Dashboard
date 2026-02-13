@@ -26,7 +26,7 @@
                 </div>
                 <div class="h6 text-muted"><span t-esc="props.name"/></div>
                 <div class="fw-bolder text-dark" style="font-size: 24px;"><span t-esc="props.value"/></div>
-                <div class="h6 text-muted"><span t-esc="props.description"/></div>                  
+                <div class="h6 text-muted" style="font-size: 12px;"><span t-esc="props.description"/></div>                  
             </div>
         </div>
     </t>

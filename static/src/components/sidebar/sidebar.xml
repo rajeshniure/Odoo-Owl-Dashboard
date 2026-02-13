@@ -1,0 +1,35 @@
+<templates xml:space="preserve">
+    <t t-name="owl.DashboardSidebar" owl="1">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100 shadow" style="width: 260px; background-color: #1a1b2e !important;">
+            <a href="/" class="d-flex align-items-center mb-4 mb-md-0 me-md-auto text-white text-decoration-none px-2">
+                <div class="bg-primary rounded p-1 me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                    <i class="fa fa-dot-circle-o text-white"/>
+                </div>
+                <span class="fs-4 fw-bold">OdooInv</span>
+            </a>
+            
+            <hr class="border-secondary opacity-25"/>
+            
+            <ul class="nav nav-pills flex-column mb-auto mt-2">
+                <t t-foreach="menuItems" t-as="item" t-key="item.id">
+                    <li class="nav-item mb-1">
+                        <a href="#" 
+                           class="nav-link text-white d-flex align-items-center gap-3 py-2 px-3 rounded-3 transition-all"
+                           t-att-class="state.activeMenu === item.label ? 'active bg-primary' : 'opacity-75'"
+                           t-on-click="() => this._onMenuClick(item)"
+                           style="font-size: 0.95rem;">
+                            <i t-attf-class="fa {{item.icon}} w-20px text-center"/>
+                            <span t-esc="item.label"/>
+                        </a>
+                    </li>
+                </t>
+            </ul>
+
+            <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                <a href="#" class="nav-link text-white opacity-50 px-3 py-2">
+                    <i class="fa fa-chevron-left me-2"/>
+                </a>
+            </div>
+        </div>
+    </t>
+</templates>

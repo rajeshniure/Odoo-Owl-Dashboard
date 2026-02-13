@@ -1,6 +1,6 @@
 <templates xml:space="preserve">
     <t t-name="owl.ReplenishmentTable" owl="1">
-        <div class="shadow-sm border rounded bg-white">
+
 
             <table class="table table-hover mb-0">
                 <thead class="bg-light text-muted small">
@@ -16,7 +16,7 @@
                 <tbody class="align-middle">
                     <t t-foreach="items" t-as="item" t-key="item.id">
                         <tr>
-                            <td class="ps-4 fw-medium text-secondary" t-esc="item.product"/>
+                            <td class="ps-4 fw-medium text-primary" t-esc="item.product"/>
                             <td class="text-danger fw-bold" t-esc="item.stock"/>
                             <td class="text-muted" t-esc="item.min"/>
                             <td class="text-success fw-bold" t-esc="item.qty"/>
@@ -32,6 +32,6 @@
                     </t>
                 </tbody>
             </table>
-        </div>
+    
     </t>
 </templates>

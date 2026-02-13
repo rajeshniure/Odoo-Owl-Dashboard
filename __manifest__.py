@@ -3,7 +3,6 @@
     'name' : 'Owl Tutorial',
     'version' : '1.0',
     'summary': 'OWL Tutorial',
-    'application': True,
     'sequence': -5,
     'description': """OWL Tutorial Custom Dashboard""",
     'category': 'OWL',
