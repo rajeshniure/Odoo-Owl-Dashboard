@@ -105,15 +105,3 @@ export class BarRenderer extends Component {
 }
 
 BarRenderer.template = "owl.BarRenderer";
-
-export class WarehouseProgressCard extends Component {
-  // Logic to calculate percentage if not provided
-  getZonePercent(zone) {
-    if (zone.percent) return zone.percent;
-    // Optional: calculate based on a max capacity
-    const max = 1500;
-    return Math.min((zone.value / max) * 100, 100);
-  }
-}
-
-WarehouseProgressCard.template = "my_module.WarehouseProgressCard";

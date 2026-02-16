@@ -1,34 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <templates>
     <t t-name="owl.KpiCard" owl="1">
         <div class="col-lg-2 m-0 p-0">
             <div class="shadow-sm border m-2 p-3 bg-white" style="border-radius: 10px;">
                 <div class="d-flex justify-content-between align-items-center mb-3">
 
-                 
+
                     <div t-attf-class="kpi-icon bg-#{props.color}-subtle px-2 py-1 rounded">
-                        <i t-attf-class="fa #{props.icon}"/>
+                        <i t-attf-class="fa #{props.icon}" />
                     </div>
 
                     <t t-if="props.percentage">
-                        <span t-attf-class="badge border rounded-pill px-2 py-1 
+                        <span
+                            t-attf-class="badge border rounded-pill px-2 py-1 
                             #{props.trend === 'up' ? ' text-success' : 
                               props.trend === 'down' ? 'text-danger' : 
                               'bg-secondary bg-opacity-10 text-secondary'}">
-                            
-                            <i t-attf-class="fa #{props.trend === 'up' ? 'fa-arrow-up' : 
+
+                            <i
+                                t-attf-class="fa #{props.trend === 'up' ? 'fa-arrow-up' : 
                                                   props.trend === 'down' ? 'fa-arrow-down' : 
-                                                  'fa-minus'} me-1"/>
-                            <t t-esc="props.percentage"/>%
-                        </span>
+                                                  'fa-minus'} me-1" />
+                            <t
+                                t-esc="props.percentage" />% </span>
                     </t>
 
                 </div>
-                <div class="h6 text-muted"><span t-esc="props.name"/></div>
-                <div class="fw-bolder text-dark" style="font-size: 24px;"><span t-esc="props.value"/></div>
-                <div class="h6 text-muted" style="font-size: 12px;"><span t-esc="props.description"/></div>                  
+                <div class="h6 text-muted">
+                    <span t-esc="props.name" />
+                </div>
+                <div class="fw-bolder text-dark" style="font-size: 24px;">
+                    <span t-esc="props.value" />
+                </div>
+                <div class="h6 text-muted" style="font-size: 12px;">
+                    <span t-esc="props.description" />
+                </div>
             </div>
         </div>
     </t>
 </templates>
-
