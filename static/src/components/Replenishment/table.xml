@@ -2,36 +2,42 @@
     <t t-name="owl.ReplenishmentTable" owl="1">
 
 
-            <table class="table table-hover mb-0">
-                <thead class="bg-light text-muted small">
+        <table class="table table-hover mb-0">
+            <thead class="bg-light text-muted small">
+                <tr>
+                    <th class="ps-4 border-0">Product</th>
+                    <th class="border-0">Stock</th>
+                    <th class="border-0">Min</th>
+                    <th class="border-0">Order Qty</th>
+                    <th class="border-0">Vendor</th>
+                    <th class="text-end pe-4 border-0">Action</th>
+                </tr>
+            </thead>
+            <tbody class="align-middle">
+                <t t-foreach="state.items" t-as="item" t-key="item.id">
                     <tr>
-                        <th class="ps-4 border-0">Product</th>
-                        <th class="border-0">Stock</th>
-                        <th class="border-0">Min</th>
-                        <th class="border-0">Order Qty</th>
-                        <th class="border-0">Vendor</th>
-                        <th class="text-end pe-4 border-0">Action</th>
+                        <td class="ps-4 fw-medium text-primary" t-esc="item.product"/>
+                        <td t-attf-class="fw-bold #{item.stock &lt; item.min ? 'text-danger' : 'text-warning'}" t-esc="item.stock"/>
+                        <td class="text-muted" t-esc="item.min"/>
+                        <td class="text-success fw-bold" t-esc="item.qty"/>
+                        <td class="text-muted" t-esc="item.vendor"/>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm rounded-pill px-3" style="background-color: #f0f1ff; color: #666ee8; border: none;" t-on-click="() => this._onOrder(item)">
+                                <i class="fa fa-shopping-cart me-1"/>
+                                    Order
+                            </button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody class="align-middle">
-                    <t t-foreach="items" t-as="item" t-key="item.id">
-                        <tr>
-                            <td class="ps-4 fw-medium text-primary" t-esc="item.product"/>
-                            <td class="text-danger fw-bold" t-esc="item.stock"/>
-                            <td class="text-muted" t-esc="item.min"/>
-                            <td class="text-success fw-bold" t-esc="item.qty"/>
-                            <td class="text-muted" t-esc="item.vendor"/>
-                            <td class="text-end pe-4">
-                                <button class="btn btn-sm rounded-pill px-3" 
-                                        style="background-color: #f0f1ff; color: #666ee8; border: none;"
-                                        t-on-click="() => this._onOrder(item)">
-                                    <i class="fa fa-plus-circle me-1"/> Order
-                                </button>
-                            </td>
-                        </tr>
-                    </t>
-                </tbody>
-            </table>
-    
+                </t>
+                <t t-if="state.items.length === 0">
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            All stock levels are healthy.
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+
     </t>
 </templates>

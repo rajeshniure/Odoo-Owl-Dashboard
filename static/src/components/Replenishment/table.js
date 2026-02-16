@@ -1,48 +1,44 @@
 /** @odoo-module **/
-import { Component } from "@odoo/owl";
+import { Component, useState, onWillStart } from "@odoo/owl";
+import { useService } from "@web/core/utils/hooks";
 
 export class ReplenishmentTable extends Component {
   setup() {
-    // Example data structure matching your image
-    this.items = [
-      {
-        id: 1,
-        product: "Office Chair Model X",
-        stock: 12,
-        min: 20,
-        qty: "+50",
-        vendor: "ChairsRus Inc.",
-      },
-      {
-        id: 2,
-        product: "Ergo Mouse Pad",
-        stock: 5,
-        min: 50,
-        qty: "+100",
-        vendor: "TechSupply Co.",
-      },
-      {
-        id: 3,
-        product: "Monitor Stand",
-        stock: 0,
-        min: 15,
-        qty: "+30",
-        vendor: "Office Depot",
-      },
-      {
-        id: 4,
-        product: "USB-C Cable 6ft",
-        stock: 24,
-        min: 100,
-        qty: "+200",
-        vendor: "CableMasters",
-      },
-    ];
+    this.orm = useService("orm");
+    this.action = useService("action");
+    
+    // Initialize state with an empty array
+    this.state = useState({
+      items: [],
+    });
+
+    onWillStart(async () => {
+      await this.fetchReplenishmentData();
+    });
+  }
+
+  async fetchReplenishmentData() {
+    try {
+      const data = await this.orm.call(
+        "stock.warehouse",
+        "get_replenishment_data",
+        []
+      );
+      this.state.items = data;
+    } catch (error) {
+      console.error("Replenishment fetch failed", error);
+    }
   }
 
   _onOrder(item) {
-    console.log("Ordering for:", item.product);
-    // Logic to trigger Odoo action or RPC call goes here
+    // Redirect user to the actual Reordering Rule form to confirm the order
+    this.action.doAction({
+        type: "ir.actions.act_window",
+        res_model: "stock.warehouse.orderpoint",
+        res_id: item.id,
+        views: [[false, "form"]],
+        target: "new",
+    });
   }
 }
 

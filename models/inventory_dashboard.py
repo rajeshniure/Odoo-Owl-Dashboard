@@ -63,3 +63,42 @@ class StockWarehouse(models.Model):
             "internal_transfers": internal_transfers_qty,
             "backorders": backorders_qty,
         }
+
+    
+    @api.model
+    def get_replenishment_data(self):
+        orderpoints = self.env['stock.warehouse.orderpoint'].search([
+            ('qty_to_order', '>', 0)
+        ], limit=10)
+
+        res = []
+        if orderpoints:
+            for op in orderpoints:
+                vendor = op.product_id.seller_ids[0].partner_id.name if op.product_id.seller_ids else "No Vendor"
+                res.append({
+                    "id": op.id,
+                    "product": op.product_id.display_name,
+                    "stock": op.qty_on_hand,
+                    "min": op.product_min_qty,
+                    "qty": f"+{op.qty_to_order}",
+                    "vendor": vendor,
+                })
+        else:
+            # FALLBACK: If no orderpoints are found, let's find products with low stock 
+            # specifically to see if the table works
+            low_stock_products = self.env['product.product'].search([
+                ('type', '=', 'consu'), # or 'product' for storable
+                ('qty_available', '<', 10)
+            ], limit=5)
+
+            for product in low_stock_products:
+                res.append({
+                    "id": 0,
+                    "product": product.display_name,
+                    "stock": product.qty_available,
+                    "min": 10,
+                    "qty": "+25",
+                    "vendor": "Manual Check Required",
+                })
+                
+        return res

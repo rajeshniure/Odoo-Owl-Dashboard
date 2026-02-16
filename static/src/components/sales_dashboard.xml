@@ -2,8 +2,6 @@
 <templates xml:space="preserve">
     <t t-name="owl.OwlSalesDashboard" owl="1">
         <div class="d-flex overflow-hidden vh-100">
-            <DashboardSidebar />
-
             <div class="flex-grow-1 overflow-auto bg-muted p-0">
                 <div class="row m-3">
                     <div class="row">
@@ -12,7 +10,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex gap-3">
                                     <div>
-                                        <select class="form-select" >
+                                        <select class="form-select">
                                             <option value="San Franscio">San Franscio(Main)</option>
                                             <option value="Los Angeles">Los Angeles</option>
                                             <option value="California">California</option>
@@ -52,12 +50,12 @@
                     <div class="o_inventory_dashboard p-3">
                         <t t-if="state and state.kpiData">
                             <div class="row">
-                                <KpiCard icon="'fa-cube'" color="'primary'" name="'Stock On Hand'" value="state.kpiData.stock_on_hand" description="'Units across all locations'" percentage="12" trend="'up'"/>
-                                <KpiCard icon="'fa-history'" color="'success'" name="'Forecasted Stock'" value="state.kpiData.forecasted_stock" description="'Includes pending receipts'" percentage="-5" trend="'down'"/>
-                                <KpiCard icon="'fa-arrow-down'" color="'warning'" name="'Incoming'" value="state.kpiData.incoming" description="'Units to receive'" percentage="8" trend="'up'"/>
-                                <KpiCard icon="'fa-arrow-up'" color="'danger'" name="'Outgoing'" value="state.kpiData.outgoing" description="'Units to deliver'" percentage="-3" trend="'down'"/>
-                                <KpiCard icon="'fa-usd'" color="'info'" name="'Stock Value'" value="state.kpiData.stock_value" description="'Current valuation'" percentage="5" trend="'up'"/>
-                                <KpiCard icon="'fa-exclamation-triangle'" color="'primary'" name="'Low Stock Alerts'" value="state.kpiData.low_stock_count" description="'Products below min'" percentage="-10" trend="'down'"/>
+                                <KpiCard icon="'fa-cube'" color="'primary'" name="'Stock On Hand'" value="state.kpiData.stock_on_hand" description="'Units across all locations'" percentage="12" trend="'up'" resModel="'stock.quant'"/>
+                                <KpiCard icon="'fa-history'" color="'success'" name="'Forecasted Stock'" value="state.kpiData.forecasted_stock" description="'Includes pending receipts'" percentage="-5" trend="'down'" resModel="'stock.move'"/>
+                                <KpiCard icon="'fa-arrow-down'" color="'warning'" name="'Incoming'" value="state.kpiData.incoming" description="'Units to receive'" percentage="8" trend="'up'" resModel="'stock.picking'"/>
+                                <KpiCard icon="'fa-arrow-up'" color="'danger'" name="'Outgoing'" value="state.kpiData.outgoing" description="'Units to deliver'" percentage="-3" trend="'down'" resModel="'stock.picking'"/>
+                                <KpiCard icon="'fa-usd'" color="'info'" name="'Stock Value'" value="state.kpiData.stock_value" description="'Current valuation'" percentage="5" trend="'up'" resModel="'product.product'"/>
+                                <KpiCard icon="'fa-exclamation-triangle'" color="'primary'" name="'Low Stock Alerts'" value="state.kpiData.low_stock_count" description="'Products below min'" percentage="-10" trend="'down'" resModel="'product.product'"/>
                             </div>
                         </t>
                         <t t-else="">
@@ -69,10 +67,10 @@
                     </div>
                     <h3 class="text-primary fw-bold">Operation Overview</h3>
                     <div class="row">
-                        <OverviewCard name="'Receipts'" value="state.kpiData.receipts" description="'To Process'" priority="'High'" action_text="'Receive'"/>
-                        <OverviewCard name="'Delivery Orders'" value="state.kpiData.deliveries" description="'To Process'" priority="'High'" action_text="'Deliver'"/>
-                        <OverviewCard name="'Internal Transfers'" value="state.kpiData.internal_transfers" description="'Pending'" priority="'High'" action_text="'Transfers'"/>
-                        <OverviewCard name="'Backorders'" value="state.kpiData.backorders" description="'Waiting'" priority="'Normal'" action_text="'Review'"/>
+                        <OverviewCard name="'Receipts'" value="state.kpiData.receipts" description="'To Process'" priority="'High'" action_text="'Receive'" resModel="'stock.picking'"/>
+                        <OverviewCard name="'Delivery Orders'" value="state.kpiData.deliveries" description="'To Process'" priority="'High'" action_text="'Deliver'" resModel="'stock.picking'"/>
+                        <OverviewCard name="'Internal Transfers'" value="state.kpiData.internal_transfers" description="'Pending'" priority="'High'" action_text="'Transfers'" resModel="'stock.picking'"/>
+                        <OverviewCard name="'Backorders'" value="state.kpiData.backorders" description="'Waiting'" priority="'Normal'" action_text="'Review'" resModel="'stock.picking'"/>
                     </div>
                     <div class="col-lg-8">
                         <div class="row">

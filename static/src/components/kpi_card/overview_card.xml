@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="owl.OverviewCard" owl="1">
-        <div class="col-lg-3 p-2">
+        <div class="col-lg-3 p-2" t-on-click="onOverviewClick" style="cursor: pointer;" >
             <div class="card h-100 border-0 shadow-sm p-3 bg-white" style="border-radius: 10px;">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <span class="h6 fw-bolder text-dark mb-0" t-esc="props.name"/>
