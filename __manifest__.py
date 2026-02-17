@@ -6,7 +6,7 @@
     "sequence": -5,
     "description": """OWL Tutorial Custom Dashboard""",
     "category": "OWL",
-    "depends": ["base", "web", "sale", "board", "stock"],
+    "depends": ["base", "web", "stock"],
     "data": [
         "views/sales_dashboard.xml",
     ],

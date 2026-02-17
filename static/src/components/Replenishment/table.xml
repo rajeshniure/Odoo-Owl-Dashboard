@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody class="align-middle">
-                <t t-foreach="state.items" t-as="item" t-key="item.id">
+                <t t-foreach="state.items" t-as="item" t-key="item_index">
                     <tr>
                         <td class="ps-4 fw-medium text-primary" t-esc="item.product"/>
                         <td t-attf-class="fw-bold #{item.stock &lt; item.min ? 'text-danger' : 'text-warning'}" t-esc="item.stock"/>
