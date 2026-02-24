@@ -8,26 +8,17 @@
                         <!-- <div class="col m-0 p-0"> -->
                         <div class="shadow-sm border m-2 p-2 bg-white">
                             <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex gap-3">
-                                    <div>
-                                        <select class="form-select">
-                                            <option value="San Franscio">San Franscio(Main)</option>
-                                            <option value="Los Angeles">Los Angeles</option>
-                                            <option value="California">California</option>
-                                            <option value="Texas">Texas</option>
-                                            <option value="Alabama">Alabama</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <select class="form-select" t-on-change="onChangePeriod" t-model="state.period">
-                                            <option value="0">Select Period</option>
-                                            <option value="7">Last 7 Days</option>
-                                            <option value="30">Last 30 Days</option>
-                                            <option value="90">Last 90 Days</option>
-                                            <option value="365">Last 365 Days</option>
-                                        </select>
-                                    </div>
+
+                                <div>
+                                    <select class="form-select" t-on-change="onChangePeriod" t-model="state.period">
+                                        <option value="0">Select Period</option>
+                                        <option value="7">Last 7 Days</option>
+                                        <option value="30">Last 30 Days</option>
+                                        <option value="90">Last 90 Days</option>
+                                        <option value="365">Last 365 Days</option>
+                                    </select>
                                 </div>
+
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="d-flex align-items-center">
                                         <div class="input-group input-group-sm border rounded" style="max-width: 260px;">
