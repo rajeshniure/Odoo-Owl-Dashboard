@@ -8,7 +8,7 @@
     "category": "OWL",
     "depends": ["base", "web", "stock"],
     "data": [
-        "views/sales_dashboard.xml",
+        "views/inventory_dashboard.xml",
     ],
     "demo": [],
     "installable": True,

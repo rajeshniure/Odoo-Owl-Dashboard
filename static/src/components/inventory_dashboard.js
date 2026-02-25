@@ -10,7 +10,7 @@ import { DashboardSidebar } from "./sidebar/sidebar";
 
 const { Component, onWillStart, useState } = owl;
 
-export class OwlSalesDashboard extends Component {
+export class OwlInventoryDashboard extends Component {
     setup() {
         this.orm = useService("orm");
         this.state = useState({
@@ -24,7 +24,7 @@ export class OwlSalesDashboard extends Component {
     // Combined logic: handles period changes and initial load
     async fetchKpiData() {
         let dateLimit = null;
-        const days = parseInt(this.state.period);
+        const days = Number.parseInt(this.state.period);
 
         if (days > 0) {
             dateLimit = luxon.DateTime.now().minus({ days }).toISODate();
@@ -45,10 +45,16 @@ export class OwlSalesDashboard extends Component {
     }
 }
 
-OwlSalesDashboard.template = "owl.OwlSalesDashboard";
-OwlSalesDashboard.components = {
-    DashboardSidebar, KpiCard, OverviewCard, 
-    ChartRenderer, BarRenderer, WarehouseProgressBar, ReplenishmentTable 
+OwlInventoryDashboard.template = "owl.OwlInventoryDashboard";
+OwlInventoryDashboard.components = {
+    DashboardSidebar,
+    KpiCard,
+    OverviewCard,
+    ChartRenderer,
+    BarRenderer,
+    WarehouseProgressBar,
+    ReplenishmentTable,
 };
 
-registry.category("actions").add("owl.sales_dashboard", OwlSalesDashboard);
+registry.category("actions").add("owl.sales_dashboard", OwlInventoryDashboard);
+

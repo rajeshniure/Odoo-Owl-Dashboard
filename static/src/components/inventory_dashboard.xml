@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="owl.OwlSalesDashboard" owl="1">
+    <t t-name="owl.OwlInventoryDashboard" owl="1">
         <div class="d-flex overflow-hidden vh-100">
             <div class="flex-grow-1 overflow-auto bg-muted p-0">
                 <div class="row m-3">
@@ -100,7 +100,7 @@
                             <div class="col m-0 p-0">
                                 <div class="shadow-sm border m-2 p-4 bg-white" style="height: 400px;">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                        <h3 class="text-primary fw-bold">Monthly Inventory</h3>
                                         <div class="px-3 py-1 bg-primary cursor-pointer">
                                             <span class="fa fa-arrow-right text-white"/>
                                         </div>
@@ -132,3 +132,4 @@
         </div>
     </t>
 </templates>
+

@@ -1,4 +1,5 @@
 from odoo import models, api
+from datetime import datetime, timedelta
 
 
 class StockWarehouse(models.Model):
@@ -94,3 +95,47 @@ class StockWarehouse(models.Model):
             }
             for p in low_prods
         ]
+    
+    
+    
+    
+    @api.model
+    def get_chart_data(self):
+        # 1. Line Chart Data (Last 7 Days)
+        days = []
+        incoming_data = []
+        outgoing_data = []
+        
+        for i in range(6, -1, -1):
+            date = (datetime.now() - timedelta(days=i)).date()
+            days.append(date.strftime('%A'))
+            
+            # Simplified query for example - in production, use read_group for performance
+            moves = self.env['stock.move'].search([
+                ('date', '>=', date), 
+                ('date', '<', date + timedelta(days=1)),
+                ('state', '=', 'done')
+            ])
+            incoming_data.append(sum(moves.filtered(lambda m: m.picking_code == 'incoming').mapped('product_uom_qty')))
+            outgoing_data.append(sum(moves.filtered(lambda m: m.picking_code == 'outgoing').mapped('product_uom_qty')))
+
+        # 2. Bar Chart Data (Locations)
+        # Fetch top 4 internal locations by stock volume
+        quants = self.env['stock.quant'].read_group(
+            [('location_id.usage', '=', 'internal')],
+            ['location_id', 'quantity'],
+            ['location_id'],
+            limit=4
+        )
+
+        return {
+            "line_chart": {
+                "labels": days,
+                "incoming": incoming_data,
+                "outgoing": outgoing_data,
+            },
+            "bar_chart": {
+                "labels": [q['location_id'][1] for q in quants],
+                "data": [q['quantity'] for q in quants],
+            }
+        }
