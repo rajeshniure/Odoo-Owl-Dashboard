@@ -41,12 +41,68 @@
                     <div class="o_inventory_dashboard p-3">
                         <t t-if="state and state.kpiData">
                             <div class="row">
-                                <KpiCard icon="'fa-cube'" color="'primary'" name="'Stock On Hand'" value="state.kpiData.stock_on_hand" description="'Units across all locations'" percentage="12" trend="'up'" resModel="'stock.quant'"/>
-                                <KpiCard icon="'fa-history'" color="'success'" name="'Forecasted Stock'" value="state.kpiData.forecasted_stock" description="'Includes pending receipts'" percentage="-5" trend="'down'" resModel="'stock.move'"/>
-                                <KpiCard icon="'fa-arrow-down'" color="'warning'" name="'Incoming'" value="state.kpiData.incoming" description="'Units to receive'" percentage="8" trend="'up'" resModel="'stock.picking'"/>
-                                <KpiCard icon="'fa-arrow-up'" color="'danger'" name="'Outgoing'" value="state.kpiData.outgoing" description="'Units to deliver'" percentage="-3" trend="'down'" resModel="'stock.picking'"/>
-                                <KpiCard icon="'fa-usd'" color="'info'" name="'Stock Value'" value="state.kpiData.stock_value" description="'Current valuation'" percentage="5" trend="'up'" resModel="'product.product'"/>
-                                <KpiCard icon="'fa-exclamation-triangle'" color="'primary'" name="'Low Stock Alerts'" value="state.kpiData.low_stock_count" description="'Products below min'" percentage="-10" trend="'down'" resModel="'product.product'"/>
+                                <KpiCard 
+                                    icon="'fa-cube'" 
+                                    color="'primary'" 
+                                    name="'Stock On Hand'" 
+                                    value="state.kpiData.stock_on_hand" 
+                                    description="'Units across all locations'" 
+                                    percentage="12" 
+                                    trend="'up'" 
+                                    resModel="'product.product'"/>
+                                <KpiCard 
+                                    icon="'fa-history'" 
+                                    color="'success'" 
+                                    name="'Forecasted Stock'" 
+                                    value="state.kpiData.forecasted_stock" 
+                                    description="'Includes pending receipts'" 
+                                    percentage="-5" 
+                                    trend="'down'" 
+                                    resModel="'stock.move'"
+                                    domain="[['state', 'not in', ['done', 'cancel']]]" 
+                                    context="{'search_default_todo': 1}"/>
+                                    
+                                <KpiCard 
+                                    icon="'fa-arrow-down'" 
+                                    color="'warning'" 
+                                    name="'Incoming'" 
+                                    value="state.kpiData.incoming" 
+                                    description="'Units to receive'" 
+                                    percentage="8" 
+                                    trend="'up'" 
+                                    resModel="'stock.move'" 
+                                    domain="[['picking_code', '=', 'incoming'], ['state', 'not in', ['done', 'cancel']]]" 
+                                    context="{'search_default_incoming': 1, 'search_default_todo': 1}"/>
+                                <KpiCard 
+                                    icon="'fa-arrow-up'" 
+                                    color="'danger'" 
+                                    name="'Outgoing'" 
+                                    value="state.kpiData.outgoing" 
+                                    description="'Units to deliver'" 
+                                    percentage="-3" 
+                                    trend="'down'" 
+                                    resModel="'stock.move'"
+                                    domain="[['picking_code', '=', 'outgoing'], ['state', 'not in', ['done', 'cancel']]]" 
+                                    context="{'search_default_outgoing': 1, 'search_default_todo': 1}"/> 
+                                <KpiCard 
+                                    icon="'fa-usd'" 
+                                    color="'info'" 
+                                    name="'Stock Value'" 
+                                    value="state.kpiData.stock_value" 
+                                    description="'Current valuation'" 
+                                    percentage="5" 
+                                    trend="'up'" 
+                                    resModel="'product.product'"
+                                />
+                                <KpiCard 
+                                    icon="'fa-exclamation-triangle'" 
+                                    color="'primary'" 
+                                    name="'Low Stock Alerts'" 
+                                    value="state.kpiData.low_stock_count" 
+                                    description="'Products below min'" 
+                                    percentage="-10" 
+                                    trend="'down'" 
+                                    resModel="'product.product'"/>
                             </div>
                         </t>
                         <t t-else="">

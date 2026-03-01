@@ -16,6 +16,7 @@ class BaseCard extends Component {
                 name: this.props.name,
                 res_model: this.props.resModel,
                 domain: this.props.domain || [],
+                context: this.props.context || {},
                 views: [[false, "list"], [false, "form"]],
                 target: "current",
             });

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Owl Tutorial",
+    "name": "Inventory Dashboard",
     "version": "1.0",
-    "summary": "OWL Tutorial",
+    "summary": "Custom Inventory Dashboard using OWL",
     "sequence": -5,
-    "description": """OWL Tutorial Custom Dashboard""",
+    "description": """Custom Inventory Dashboard using OWL""",
     "category": "OWL",
     "depends": ["base", "web", "stock"],
     "data": [
